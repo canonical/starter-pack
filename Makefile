@@ -26,7 +26,7 @@ install:
                 "* only serve: make serve \n" \
                 "* clean built doc files: make clean-doc \n" \
                 "* clean full environment: make clean \n" \
-		"* check spelling: make spelling \n" \
+		"* check spelling: make spellcheck \n" \
 		"\n" \
 		"enchant must be installed in order for pyenchant (and therefore \n" \
 		"spelling checks) to work. \n" \
@@ -48,6 +48,9 @@ clean-doc:
 
 spelling:
 	. $(VENV); $(SPHINXBUILD) -b spelling "$(SOURCEDIR)" "$(BUILDDIR)"
+
+spellcheck: html
+	. $(VENV) ; python3 -m pyspelling -c .sphinx/spellcheck.yaml
 
 .PHONY: help Makefile
 
